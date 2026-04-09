@@ -547,6 +547,35 @@ Dependencies:
 - Requires M1 complete.
 - Benefits from M2 complete (shared paging/streaming reuse), but can overlap partially.
 
+#### M3 Task Breakdown (Implemented)
+
+- [x] **M3.1 Experiments client implementation skeleton**
+    - Implement all `IExperimentsClient` methods in `ExperimentsClient`.
+    - Add stream endpoints for experiments and experiment items.
+
+- [x] **M3.2 4 MB bulk request guard**
+    - Enforce `ExperimentItemsBulk` maximum payload size using serialized request byte count.
+    - Throw explicit argument exception when payload exceeds 4 MB.
+
+- [x] **M3.3 Projects client implementation skeleton**
+    - Implement all `IProjectsClient` methods in `ProjectsClient`.
+
+- [x] **M3.4 Prompts client implementation skeleton**
+    - Implement all `IPromptsClient` methods in `PromptsClient`.
+    - Include prompt version lifecycle methods (create/get/list/retrieve/restore).
+
+- [x] **M3.5 Feedback definitions client implementation skeleton**
+    - Implement all `IFeedbackDefinitionsClient` methods in `FeedbackDefinitionsClient`.
+
+- [x] **M3.6 Root client composition**
+    - Wire `Experiments`, `Projects`, `FeedbackDefinitions`, and `Prompts` into `OpikClient` via lazy initialization.
+
+- [ ] **M3.7 API route and payload contract verification**
+    - Confirm provisional endpoint paths and payload names against live Opik API behavior.
+
+- [ ] **M3.8 Tests for bulk limit and prompt version flows**
+    - Add tests for 4 MB guard, stream behavior, and prompt version lifecycle.
+
 ---
 
 ### M4 — Platform Utilities, Hardening, and Release (Weeks 9–10)
