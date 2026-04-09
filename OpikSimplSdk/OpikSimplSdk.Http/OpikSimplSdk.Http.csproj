@@ -6,4 +6,8 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\OpikSimplSdk.Core\OpikSimplSdk.Core.csproj" />
+    </ItemGroup>
+
 </Project>

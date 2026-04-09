@@ -1,5 +1,8 @@
 ﻿namespace OpikSimplSdk.Core;
 
-public class Class1
+/// <summary>
+/// Assembly marker for Opik core contracts.
+/// </summary>
+public static class CoreAssembly
 {
 }
