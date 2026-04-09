@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpikSimplSdk.Core", "OpikSimplSdk.Core\OpikSimplSdk.Core.csproj", "{0578607B-21D1-4DA3-A86E-7E09397FDD35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpikSimplSdk.Http", "OpikSimplSdk.Http\OpikSimplSdk.Http.csproj", "{F3D218EE-F781-4B93-AF0C-04E919ACCC44}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0578607B-21D1-4DA3-A86E-7E09397FDD35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0578607B-21D1-4DA3-A86E-7E09397FDD35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0578607B-21D1-4DA3-A86E-7E09397FDD35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0578607B-21D1-4DA3-A86E-7E09397FDD35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3D218EE-F781-4B93-AF0C-04E919ACCC44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3D218EE-F781-4B93-AF0C-04E919ACCC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3D218EE-F781-4B93-AF0C-04E919ACCC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3D218EE-F781-4B93-AF0C-04E919ACCC44}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
