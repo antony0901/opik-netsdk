@@ -1,4 +1,5 @@
 using System.Net.Http.Headers;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.Json;
 using OpikSimplSdk.Core.Common;
@@ -45,6 +46,32 @@ public sealed class OpikHttpTransport : IOpikHttpTransport
     {
         using var response = await SendCoreAsync(method, path, body, options, cancellationToken).ConfigureAwait(false);
         response.EnsureSuccessStatusCode();
+    }
+
+    public async IAsyncEnumerable<byte[]> StreamBytesAsync(HttpMethod method, string path, object? body = null, RequestOptions? options = null, [EnumeratorCancellation] CancellationToken cancellationToken = default)
+    {
+        using var response = await SendCoreAsync(method, path, body, options, cancellationToken).ConfigureAwait(false);
+        response.EnsureSuccessStatusCode();
+
+        await using var stream = await response.Content.ReadAsStreamAsync(cancellationToken).ConfigureAwait(false);
+        using var reader = new StreamReader(stream, Encoding.UTF8, leaveOpen: false);
+
+        while (true)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var line = await reader.ReadLineAsync(cancellationToken).ConfigureAwait(false);
+            if (line is null)
+            {
+                break;
+            }
+
+            if (string.IsNullOrWhiteSpace(line))
+            {
+                continue;
+            }
+
+            yield return Encoding.UTF8.GetBytes(line);
+        }
     }
 
     private async Task<HttpResponseMessage> SendCoreAsync(HttpMethod method, string path, object? body, RequestOptions? options, CancellationToken cancellationToken)

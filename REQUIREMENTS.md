@@ -493,6 +493,36 @@ Exit criteria:
 Dependencies:
 - Requires M1 complete.
 
+#### M2 Task Breakdown (In Progress)
+
+- [x] **M2.1 HTTP client base abstractions**
+    - Add shared `ClientBase` with query-string helper.
+
+- [x] **M2.2 Streaming transport support**
+    - Add transport-level byte streaming method for NDJSON endpoints.
+    - Implement async line-by-line streaming over response body.
+
+- [x] **M2.3 Traces client implementation skeleton**
+    - Implement all `ITracesClient` methods in `TracesClient` with endpoint wiring.
+    - Include threads/comments/feedback methods and stream search methods.
+
+- [x] **M2.4 Spans client implementation skeleton**
+    - Implement all `ISpansClient` methods in `SpansClient` with endpoint wiring.
+
+- [x] **M2.5 Datasets client implementation skeleton**
+    - Implement all `IDatasetsClient` methods in `DatasetsClient` with endpoint wiring.
+    - Include dataset-item streaming method.
+
+- [x] **M2.6 Root client composition**
+    - Wire `Traces`, `Spans`, and `Datasets` into `OpikClient` using lazy initialization.
+
+- [ ] **M2.7 Endpoint verification pass against live Opik API**
+    - Validate route paths and payload contracts against real API docs/traffic.
+    - Adjust provisional route names if needed.
+
+- [ ] **M2.8 Behavior validation tests**
+    - Add tests for pagination, stream framing, and request serialization per client.
+
 ---
 
 ### M3 — Experimentation & Configuration Surface (Weeks 6–8)

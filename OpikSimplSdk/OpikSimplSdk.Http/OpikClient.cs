@@ -1,17 +1,22 @@
 using OpikSimplSdk.Core.Clients;
 using OpikSimplSdk.Core.Common;
+using OpikSimplSdk.Http.Clients;
 using OpikSimplSdk.Http.Infrastructure;
 
 namespace OpikSimplSdk.Http;
 
 public sealed class OpikClient : IOpikClient
 {
+    private readonly Lazy<ITracesClient> _traces;
+    private readonly Lazy<ISpansClient> _spans;
+    private readonly Lazy<IDatasetsClient> _datasets;
+
     public OpikClientConfig Config { get; }
     public IOpikHttpTransport Transport { get; }
 
-    public ITracesClient Traces => throw new NotImplementedException("M2: Traces client implementation pending.");
-    public ISpansClient Spans => throw new NotImplementedException("M2: Spans client implementation pending.");
-    public IDatasetsClient Datasets => throw new NotImplementedException("M2: Datasets client implementation pending.");
+    public ITracesClient Traces => _traces.Value;
+    public ISpansClient Spans => _spans.Value;
+    public IDatasetsClient Datasets => _datasets.Value;
     public IExperimentsClient Experiments => throw new NotImplementedException("M3: Experiments client implementation pending.");
     public IProjectsClient Projects => throw new NotImplementedException("M3: Projects client implementation pending.");
     public IFeedbackDefinitionsClient FeedbackDefinitions => throw new NotImplementedException("M3: Feedback definitions client implementation pending.");
@@ -24,5 +29,9 @@ public sealed class OpikClient : IOpikClient
     {
         Config = config;
         Transport = new OpikHttpTransport(httpClient ?? new HttpClient(), config, authHeaderMode);
+
+        _traces = new Lazy<ITracesClient>(() => new TracesClient(Transport));
+        _spans = new Lazy<ISpansClient>(() => new SpansClient(Transport));
+        _datasets = new Lazy<IDatasetsClient>(() => new DatasetsClient(Transport));
     }
 }
